@@ -1,0 +1,10 @@
+<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mostRecentRecyclerView"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.fullerton.justin.mymoviereviews.view.MostRecentListFragment"
+    tools:listitem="@layout/movielist_item">
+
+
+</android.support.v7.widget.RecyclerView>
