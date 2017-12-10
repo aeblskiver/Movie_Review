@@ -110,7 +110,6 @@ public class EditMovie extends AppCompatActivity {
         switch (item.getItemId()) {
             case (R.id.menu_edit_save):
                 saveMovie();
-                finish();
                 return true;
             case (R.id.menu_edit_delete):
                 Toast.makeText(this,"Clicky", Toast.LENGTH_SHORT).show();
@@ -127,6 +126,7 @@ public class EditMovie extends AppCompatActivity {
         } else {
             mNameInputLayout.setErrorEnabled(false);
             viewModelSave();
+            finish();
         }
 
     }

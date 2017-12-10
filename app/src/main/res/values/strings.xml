@@ -12,4 +12,9 @@
     <string name="add_movie">Add Movie</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
+
+    <!-- Transition names -->
+    <string name="transitionMovieName">name</string>
+    <string name="transitionMovieDate">date</string>
+    <string name="transitionMovieRating">rating</string>
 </resources>

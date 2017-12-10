@@ -30,7 +30,7 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="@string/default_movie_title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 app:layout_constraintBottom_toTopOf="@+id/movieDate"
                 app:layout_constraintEnd_toStartOf="@+id/ratingBar"
                 app:layout_constraintStart_toStartOf="parent"

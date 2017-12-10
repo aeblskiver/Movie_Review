@@ -1,12 +1,15 @@
 package edu.fullerton.justin.mymoviereviews.util;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Fade;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -14,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import edu.fullerton.justin.mymoviereviews.MainActivity;
 import edu.fullerton.justin.mymoviereviews.R;
 import edu.fullerton.justin.mymoviereviews.model.Movie;
 import edu.fullerton.justin.mymoviereviews.view.EditMovie;
@@ -83,7 +87,20 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAd
             Context context = view.getContext();
             Intent intent = new Intent(context, EditMovie.class);
             intent.putExtra("MOVIE_NAME", movie.getMovieName());
-            context.startActivity(intent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                ((MainActivity) context).getWindow().setEnterTransition(new Fade(Fade.IN));
+                ((MainActivity) context).getWindow().setEnterTransition(new Fade(Fade.OUT));
+                ActivityOptions options = ActivityOptions
+                        .makeSceneTransitionAnimation(((MainActivity) context),
+                                new Pair<View, String>(view.findViewById(R.id.movieName), context.getString(R.string.transitionMovieName)),
+                                new Pair<View, String>(view.findViewById(R.id.movieDate), context.getString(R.string.transitionMovieDate)),
+                                new Pair<View, String>(view.findViewById(R.id.ratingBar), context.getString(R.string.transitionMovieRating))
+                                );
+                context.startActivity(intent, options.toBundle());
+            } else {
+                context.startActivity(intent);
+            }
+
         }
     }
 }
