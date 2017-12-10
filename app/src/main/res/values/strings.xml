@@ -3,13 +3,12 @@
     <string name="most_recent">Most Recent</string>
     <string name="top_rated">Top Rated</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="default_movie_title">Movie Title</string>
     <string name="default_date_seen">Date seen</string>
     <string name="title_activity_edit_movie">EditMovie</string>
     <string name="movie_name_hint">Movie Name</string>
-    <string name="mm_dd_yyyy">mm/dd/yyyy</string>
+    <string name="date_seen">Date seen</string>
     <string name="add_movie">Add Movie</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>

@@ -8,6 +8,7 @@ import dagger.Component;
 import edu.fullerton.justin.mymoviereviews.db.MovieDao;
 import edu.fullerton.justin.mymoviereviews.view.EditMovie;
 import edu.fullerton.justin.mymoviereviews.view.MostRecentListFragment;
+import edu.fullerton.justin.mymoviereviews.view.TopRatedListFragment;
 import edu.fullerton.justin.mymoviereviews.viewmodel.RecentViewModel;
 
 /**
@@ -20,6 +21,7 @@ public interface ApplicationComponent {
     void inject(EditMovie editMovie);
     void inject(RecentViewModel recentViewModel);
     void inject(MostRecentListFragment fragment);
+    void inject(TopRatedListFragment fragment);
 
     Application application();
 }

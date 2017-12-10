@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
@@ -34,12 +35,7 @@ import edu.fullerton.justin.mymoviereviews.viewmodel.ViewModelFactory;
  */
 public class MostRecentListFragment extends Fragment {
     private static final String TAG = "MostRecentListFragment";
-
     private List<Movie> movies;
-
-    private LayoutInflater layoutInflater;
-    private MoviesRecyclerAdapter recyclerAdapter;
-    @BindView(R.id.mostRecentRecyclerView)
     public RecyclerView recyclerView;
 
     @Inject
@@ -57,31 +53,27 @@ public class MostRecentListFragment extends Fragment {
         ((MovieApplication) getActivity().getApplication())
                 .getApplicationComponent()
                 .inject(this);
-        ButterKnife.bind(this.getActivity());
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        //Subscribe to view model
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        //recyclerView = (RecyclerView) container.findViewById(R.id.mostRecentRecyclerView);
         View v = inflater.inflate(R.layout.fragment_most_recent_list, container, false);
         recyclerView = v.findViewById(R.id.mostRecentRecyclerView);
-        layoutInflater = getActivity().getLayoutInflater();
         recentViewModel = ViewModelProviders.of(this, viewModelFactory).get(RecentViewModel.class);
         recentViewModel.getMovies().observe(this, new Observer<List<Movie>>() {
             @Override
             public void onChanged(@Nullable List<Movie> movies) {
                 if (MostRecentListFragment.this.movies == null) {
                     setListData(movies);
+                } else {
+                    setListData(movies); //TODO: figure out why they used the null check
                 }
             }
         });
@@ -96,7 +88,8 @@ public class MostRecentListFragment extends Fragment {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerAdapter = new MoviesRecyclerAdapter(movies);
+        MoviesRecyclerAdapter recyclerAdapter = new MoviesRecyclerAdapter();
+        recyclerAdapter.setMovies(movies);
         recyclerView.setAdapter(recyclerAdapter);
     }
 

@@ -37,4 +37,8 @@ public class MovieRepository {
     public void insertMovie(Movie movie) {
         mMovieDao.insertMovie(movie);
     }
+
+    public void deleteMovie(Movie movie) {
+        mMovieDao.deleteMovie(movie);
+    }
 }

@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import edu.fullerton.justin.mymoviereviews.R;
@@ -23,13 +25,16 @@ import edu.fullerton.justin.mymoviereviews.view.EditMovie;
 public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAdapter.MovieViewHolder> {
     private List<Movie> movies;
 
+    public MoviesRecyclerAdapter() {
+    }
+
     public MoviesRecyclerAdapter(List<Movie> movies) {
         this.movies = movies;
     }
 
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
-        notifyDataSetChanged();
+        this.notifyDataSetChanged();
     }
 
     @Override
@@ -42,8 +47,13 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAd
     public void onBindViewHolder(MovieViewHolder holder, int position) {
         Movie currentMovie = movies.get(position);
         holder.movieName.setText(currentMovie.getMovieName());
-        holder.movieDate.setText(currentMovie.getDate().toString());
+        holder.movieDate.setText(getPrettyDate(currentMovie.getDate()));//currentMovie.getDate().toString());
         holder.movieRating.setRating(currentMovie.getRating());
+    }
+
+    private String getPrettyDate(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MMMM d, YYYY");
+        return sdf.format(date);
     }
 
     @Override
